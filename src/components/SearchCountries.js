@@ -16,5 +16,3 @@ export const SearchCountries = () => {
 		</div>
 	);
 };
-
-//! Add value to input and state to the component

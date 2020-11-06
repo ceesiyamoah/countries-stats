@@ -1,5 +1,7 @@
 import React from 'react';
 
+//!Remove commas from languages
+
 export const Country = ({
 	name,
 	capital,
@@ -22,7 +24,7 @@ export const Country = ({
 					</p>
 					<p>
 						<b>Language: </b>
-						{languages.name}
+						{languages.map((language) => `${language.name},`)}
 					</p>
 					<p>
 						<b>Population: </b>
