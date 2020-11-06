@@ -1,20 +1,37 @@
 import React from 'react';
 
-export const Country = () => {
+export const Country = ({
+	name,
+	capital,
+	languages,
+	population,
+	currencies,
+	flag,
+}) => {
 	return (
 		<>
 			<div className='country-holder'>
 				<p className='image-holder'>
-					<img src='https://restcountries.eu/data/afg.svg' alt='test' />
+					<img src={flag} alt={name} />
 				</p>
-				<p className='country-name'>name</p>
+				<p className='country-name'>{name}</p>
 				<div className='country-text'>
 					<p>
-						<b>capital</b>
+						<b>Capital: </b>
+						{capital}
 					</p>
-					<p>langu</p>
-					<p>population</p>
-					<p>currency</p>
+					<p>
+						<b>Language: </b>
+						{languages.name}
+					</p>
+					<p>
+						<b>Population: </b>
+						{population.toLocaleString()}
+					</p>
+					<p>
+						<b>Currency: </b>
+						{currencies[0].name}
+					</p>
 				</div>
 			</div>
 		</>

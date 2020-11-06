@@ -1,15 +1,12 @@
 import React from 'react';
 import { Country } from './Country';
-import { SearchCountries } from './SearchCountries';
 
-const tryA = [1, 2, 3, 4, 5];
-export const CountryList = () => {
+export const CountryList = ({ data }) => {
 	return (
 		<div>
-			<SearchCountries />
 			<div className='countries-holder'>
-				{tryA.map((item) => (
-					<Country key={item} />
+				{data.map((country) => (
+					<Country key={country.name} {...country} />
 				))}
 			</div>
 		</div>
