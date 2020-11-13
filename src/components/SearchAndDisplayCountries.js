@@ -3,6 +3,7 @@ import { Header } from './Header';
 import { SearchCountries } from './SearchCountries';
 import { CountryList } from './CountryList';
 import { CountriesContext } from '../CountriesContext';
+
 export const SearchAndDisplayCountries = ({
 	data,
 	loading,
@@ -12,6 +13,7 @@ export const SearchAndDisplayCountries = ({
 	const { searchTerm } = useContext(CountriesContext);
 	const [filteredData, setFilteredData] = useState(data);
 
+	//! Filtering data based on country name, capital and languages
 	useEffect(() => {
 		setFilteredData(
 			data.filter(
