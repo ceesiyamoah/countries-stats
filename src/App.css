@@ -88,3 +88,30 @@
 	flex-wrap: wrap;
 	justify-content: center;
 }
+
+.btn-holder {
+	text-align: center;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.btn {
+	background-color: var(--bg-color);
+	border: none;
+	padding: 5px;
+}
+.btn:hover {
+	background-color: #10274973;
+	cursor: pointer;
+	color: white;
+}
+
+.countryDetails-holder {
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+}
+.details {
+	width: 70%;
+}

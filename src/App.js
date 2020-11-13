@@ -1,46 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Header } from './components/Header';
 import { SearchCountries } from './components/SearchCountries';
 import { CountryList } from './components/CountryList';
-import { useFetch } from './components/useFetch';
 import { CountriesContext } from './CountriesContext';
+// import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+// import { CountryDetails } from './components/CountryDetails';
+import { SearchAndDisplayCountries } from './components/SearchAndDisplayCountries';
 
 const App = () => {
 	const [searchTerm, setSearchTerm] = useState('');
-	const { data, loading, error } = useFetch(
-		'https://restcountries.eu/rest/v2/all'
-	);
+	const [countries, setCountries] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
 
-	console.log(
-		data
-			? data.filter(
-					(item) =>
-						item.name.toLowerCase().includes(searchTerm) ||
-						item.capital.toLowerCase().includes(searchTerm) ||
-						item.languages
-							.map((language) => language.name)
-							.join('')
-							.toLowerCase()
-							.inclues(searchTerm)
-			  )
-			: 'nothing'
-	);
+	useEffect(() => {
+		fetch('https://restcountries.eu/rest/v2/all')
+			.then((response) => response.json())
+			.then((data) => {
+				setCountries(data);
+				setLoading(false);
+			})
+			.catch((error) => setError(true));
+	}, []);
+
 	return (
 		<CountriesContext.Provider value={{ searchTerm, setSearchTerm }}>
-			<div>
-				<Header text='Countries try ' number={data.length} />
-				{error ? (
-					<h1>Error</h1>
-				) : loading ? (
-					<h1>Loading...</h1>
-				) : (
-					<>
-						<SearchCountries />
-						<CountryList data={data} />
-					</>
-				)}
-			</div>
+			<SearchAndDisplayCountries
+				data={countries}
+				headerText='Welcome to the countries hub'
+				loading={loading}
+				error={error}
+			/>
 		</CountriesContext.Provider>
 	);
 };

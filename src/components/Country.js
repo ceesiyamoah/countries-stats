@@ -34,6 +34,9 @@ export const Country = ({
 						<b>Currency: </b>
 						{currencies[0].name}
 					</p>
+					<div className='btn-holder'>
+						<button className='btn'>Learn More</button>
+					</div>
 				</div>
 			</div>
 		</>
